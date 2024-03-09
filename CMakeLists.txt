@@ -13,4 +13,8 @@ elseif(LINUX)
 endif()
 set(CMAKE_SKIP_INSTALL_RPATH OFF)
 
+if (MSVC)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+endif()
+
 add_subdirectory(src)
