@@ -1,3 +1,5 @@
+@ECHO OFF
+
 CD %~dp0
 
 SET BUILD_DIR=build
@@ -20,5 +22,19 @@ IF EXIST %PREFIX_DIR% (
 )
 
 cmake -B %BUILD_DIR% -S . -G "Visual Studio 17 2022" -A %BUIND_ARCH% -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DBUILD_SHARED_LIBS=ON
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "Make Failed"
+    EXIT /B %ERRORLEVEL%
+)
+
 cmake --build %BUILD_DIR% --config %BUILD_TYPE%
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "Build Failed"
+    EXIT /B %ERRORLEVEL%
+)
+
 cmake --install %BUILD_DIR% --prefix=%PREFIX_DIR% --config %BUILD_TYPE%
+IF %ERRORLEVEL% NEQ 0 (
+    ECHO "Install Failed"
+    EXIT /B %ERRORLEVEL%
+)

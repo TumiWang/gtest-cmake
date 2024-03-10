@@ -15,6 +15,8 @@ set(CMAKE_SKIP_INSTALL_RPATH OFF)
 
 if (MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    add_compile_options(/utf-8)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
 add_subdirectory(third_party)
