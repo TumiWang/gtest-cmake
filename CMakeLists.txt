@@ -17,4 +17,6 @@ if (MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 endif()
 
+add_subdirectory(third_party)
+
 add_subdirectory(src)
