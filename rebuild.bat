@@ -33,7 +33,7 @@ IF %ERRORLEVEL% NEQ 0 (
     EXIT /B %ERRORLEVEL%
 )
 
-cmake --install %BUILD_DIR% --prefix=%PREFIX_DIR% --config %BUILD_TYPE%
+cmake --install %BUILD_DIR% --prefix %PREFIX_DIR% --config %BUILD_TYPE%
 IF %ERRORLEVEL% NEQ 0 (
     ECHO "Install Failed"
     EXIT /B %ERRORLEVEL%
