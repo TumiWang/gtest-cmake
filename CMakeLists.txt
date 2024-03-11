@@ -19,6 +19,8 @@ if (MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
+include(cmake/RunGTestInBuilding.cmake)
+
 add_subdirectory(third_party)
 
 add_subdirectory(src)

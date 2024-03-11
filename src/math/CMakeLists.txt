@@ -11,36 +11,4 @@ if (mymath_type STREQUAL "SHARED_LIBRARY")
     install(TARGETS mymath DESTINATION bin)
 endif()
 
-enable_testing()
-add_executable(mymath_test src/mymath_test.cpp)
-
-target_link_libraries(
-    mymath_test
-    PRIVATE mymath gtest_main
-)
-
-include(GoogleTest)
-gtest_add_tests(
-    TARGET mymath_test
-)
-
-if (MSVC)
-    if (CMAKE_BUILD_TYPE)
-        set(GTEST_RUN_BUILD_TYPE ${CMAKE_BUILD_TYPE})
-    else()
-        set(GTEST_RUN_BUILD_TYPE Debug)
-    endif()
-    add_custom_target(
-        mymath_test_run ALL
-        COMMAND ${CMAKE_CTEST_COMMAND} -C ${GTEST_RUN_BUILD_TYPE}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    )
-else()
-    add_custom_target(
-        mymath_test_run ALL
-        COMMAND ${CMAKE_CTEST_COMMAND}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    )
-endif()
-
-add_dependencies(mymath_test_run mymath_test)
+__target_run_gtest_in_building(TARGET mymath SOURCES src/mymath_test.cpp)
